@@ -1,0 +1,40 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Karel",
+      "lastName": "Novák",
+      "gender": "man",
+      "job": "UX designer",
+      "city": "Praha",
+      "street": "Zelená",
+      "reference number": "15",
+      "email": "karelnovak@seznam.cz",
+      "phone": 777265987
+    },
+    {
+      "id": 2,
+      "firstName": "Andrea",
+      "lastName": "Dvořáková",
+      "gender": "women",
+      "job": "mzdová učetní",
+      "city": "Ostrava",
+      "street": "Stodolní",
+      "reference number": "878/2",
+      "email": "andreadvorak287@seznam.cz",
+      "phone": 656872003
+    },
+    {
+      "id": 3,
+      "firstName": "František",
+      "lastName": "Starý",
+      "gender": "man",
+      "job": "generální ředitel",
+      "city": "Praha",
+      "street": "Olbrachtova",
+      "reference number": "728/1",
+      "email": "frantastary@gmail.cz",
+      "phone": 707526172
+    }
+  ]
+}
