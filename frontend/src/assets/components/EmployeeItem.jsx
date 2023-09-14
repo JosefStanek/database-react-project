@@ -1,20 +1,32 @@
 import { Link } from "react-router-dom";
-import { Button, Card, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Stack,
+  Typography,
+} from "@mui/material";
 export const EmployeeItem = (props) => {
   const id = props.id.toString();
   const fullName = `${props.firstName} ${props.lastName}`;
   return (
-    <Card sx={{ marginBottom: "1rem", padding: "1rem" }}>
-      <Stack
-        direction={"row"}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-        gap={3}
-      >
-        <Typography variant="body1">{fullName}</Typography>
-        <Typography variant="body2">{props.category}</Typography>
-        <Link to={id}>detail zaměstnance</Link>
-      </Stack>
+    <Card elevation={4}>
+      <CardContent>
+        <Typography
+          variant="h6"
+          textTransform={"uppercase"}
+          fontWeight={600}
+          sx={{ color: "#4B4453" }}
+        >
+          {fullName}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button>
+          <Link to={id}>detail zaměstnance</Link>
+        </Button>
+      </CardActions>
     </Card>
   );
 };

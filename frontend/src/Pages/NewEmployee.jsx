@@ -1,3 +1,4 @@
+import { BasicForm } from "../assets/components/BasicForm";
 export const NewEmployee = () => {
-  return <h3>New Employee</h3>;
+  return <BasicForm />;
 };
