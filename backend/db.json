@@ -10,7 +10,7 @@
       "category": "it",
       "city": "Praha",
       "street": "Zelená",
-      "reference number": "15",
+      "referenceNumber": "15",
       "email": "karelnovak@seznam.cz",
       "phone": 777265987
     },
@@ -49,12 +49,26 @@
       "photo": "https://randomuser.me/api/portraits/men/1.jpg",
       "gender": "man",
       "job": "generální ředitel",
-      "category": "other",
+      "category": "management",
       "city": "Praha",
       "street": "Olbrachtova",
       "referenceNumber": "728/1",
-      "email": "frantastary@gmail.cz",
+      "email": "zelenyjean@gmail.cz",
       "phone": 707526172
+    },
+    {
+      "id": "2023-09-16T09:15:52.897Z",
+      "firstName": "Adriana",
+      "lastName": "Nováková",
+      "photo": "https://randomuser.me/api/portraits/women/17.jpg",
+      "gender": "women",
+      "job": "recepční",
+      "category": "other",
+      "city": "Ostrava",
+      "street": "Hlavní",
+      "referenceNumber": "11/21",
+      "email": "adriananov@seznam.cz",
+      "phone": 687293028
     }
   ]
 }

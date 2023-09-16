@@ -94,7 +94,9 @@ export const EmployeeDetail = () => {
             </Box>
           </Grid>
           <Stack direction={"row"} justifyContent={"center"} spacing={5} mb={5}>
-            <Button>upravit</Button>
+            <Button>
+              <Link to={`edit`}>upravit</Link>
+            </Button>
           </Stack>
         </Card>
       </Grid>

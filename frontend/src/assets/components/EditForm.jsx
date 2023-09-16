@@ -1,4 +1,6 @@
-import { Form } from "react-router-dom";
+import { Form, Link, useParams } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import {
   Card,
   Grid,
@@ -11,14 +13,14 @@ import {
   Typography,
   Button,
   Stack,
-  Icon,
+  Avatar,
+  IconButton,
 } from "@mui/material";
-import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import { useState } from "react";
-export const BasicForm = () => {
-  // const [firstName, setFirstName] = useState("");
-  const [gender, setGender] = useState("");
-  const [category, setCategory] = useState("");
+export const EditForm = ({ userData }) => {
+  const id = useParams().id;
+  const [gender, setGender] = useState(userData ? userData.gender : "");
+  const [category, setCategory] = useState(userData ? userData.category : "");
   const genderHandler = (event) => {
     setGender(event.target.value);
   };
@@ -29,19 +31,28 @@ export const BasicForm = () => {
   return (
     <Form method="POST">
       <Card elevation={5} sx={{ maxWidth: "600px", margin: "1rem auto" }}>
+        <Box display={"flex"} justifyContent={"flex-end"} m={1}>
+          <Link to={"/employees/" + id}>
+            <IconButton size="large">
+              <ArrowBackIcon />
+            </IconButton>
+          </Link>
+        </Box>
+
         <Stack
           justifyContent={"center"}
           alignContent={"center"}
           textAlign={"center"}
           m={2}
         >
-          <div>
-            <AccountCircleSharpIcon
-              sx={{ width: "100px", height: "100px" }}
-              color="primary"
+          <Box textAlign={"center"} marginX={"auto"} marginY={2}>
+            <Avatar
+              alt="Remy Sharp"
+              src={userData.photo}
+              sx={{ width: 100, height: 100 }}
             />
-          </div>
-          <Typography variant="h6">Nový uživatel</Typography>
+          </Box>
+          <Typography variant="h6">Upravit uživatele</Typography>
         </Stack>
 
         <Grid container justifyContent={"center"} p={2} gap={2}>
@@ -50,9 +61,10 @@ export const BasicForm = () => {
               size="small"
               label={"Jméno"}
               name="firstName"
-              sx={{ width: "100%" }}
+              fullWidth
               type="text"
               inputProps={{ minLength: 2 }}
+              defaultValue={userData.firstName}
               required
             />
           </Grid>
@@ -61,8 +73,9 @@ export const BasicForm = () => {
               size="small"
               label={"Příjmení"}
               name="lastName"
-              sx={{ width: "100%" }}
               inputProps={{ minLength: 2 }}
+              fullWidth
+              defaultValue={userData.lastName}
               required
             />
           </Grid>
@@ -109,8 +122,9 @@ export const BasicForm = () => {
               size="small"
               label={"Photo (url)"}
               name="photo"
-              sx={{ width: "100%" }}
+              fullWidth
               inputProps={{ minLength: 8 }}
+              defaultValue={userData.photo}
               required
             />
           </Grid>
@@ -119,8 +133,9 @@ export const BasicForm = () => {
               label="Pracovní pozice"
               name="job"
               size="small"
-              sx={{ width: "100%" }}
+              fullWidth
               inputProps={{ minLength: 2 }}
+              defaultValue={userData.job}
               required
             />
           </Grid>
@@ -131,8 +146,9 @@ export const BasicForm = () => {
               size="small"
               label="Město"
               name="city"
-              sx={{ width: "100%" }}
+              fullWidth
               inputProps={{ minLength: 2 }}
+              defaultValue={userData.city}
               required
             />
           </Grid>
@@ -141,8 +157,9 @@ export const BasicForm = () => {
               size="small"
               label="Ulice"
               name="street"
-              sx={{ width: "100%" }}
+              fullWidth
               inputProps={{ minLength: 2 }}
+              defaultValue={userData.street}
               required
             />
           </Grid>
@@ -151,7 +168,8 @@ export const BasicForm = () => {
               size="small"
               label="čp"
               name="referenceNumber"
-              sx={{ width: "100%" }}
+              fullWidth
+              defaultValue={userData.referenceNumber}
               required
             />
           </Grid>
@@ -162,8 +180,9 @@ export const BasicForm = () => {
               size="small"
               label="email"
               name="email"
-              sx={{ width: "100%" }}
+              fullWidth
               type="email"
+              defaultValue={userData.email}
               required
             />
           </Grid>
@@ -172,15 +191,16 @@ export const BasicForm = () => {
               size="small"
               label="telefon"
               name="phone"
-              sx={{ width: "100%" }}
+              fullWidth
               inputProps={{ minLength: 9 }}
+              defaultValue={userData.phone}
               required
             />
           </Grid>
         </Grid>
         <Stack p={2} m={2}>
           <Button variant="contained" type="submit">
-            odeslat
+            uložit
           </Button>
         </Stack>
       </Card>
