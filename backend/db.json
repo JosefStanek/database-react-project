@@ -125,34 +125,6 @@
       "referenceNumber": "1002/2",
       "email": "andrmalh@centrum.cz",
       "phone": 608332876
-    },
-    {
-      "id": "2020-09-17T00:31:03.336Z",
-      "firstName": "Václav",
-      "lastName": "Staněk",
-      "photo": "https://randomuser.me/api/portraits/men/21.jpg",
-      "gender": "man",
-      "job": "údržbář",
-      "category": "other",
-      "city": "Ostrava",
-      "street": "Hlavní",
-      "referenceNumber": "22/1",
-      "email": "vaclva1969@seznam.cz",
-      "phone": 702986211
-    },
-    {
-      "id": "2023-09-17T00:34:49.815Z",
-      "firstName": "Marie",
-      "lastName": "Dvořáková",
-      "photo": "https://randomuser.me/api/portraits/women/83.jpg",
-      "gender": "women",
-      "job": "uklízečka",
-      "category": "other",
-      "city": "Trutnov",
-      "street": "Zálesní",
-      "referenceNumber": "8",
-      "email": "mariedvorak@gmail.com",
-      "phone": 777662750
     }
   ]
 }

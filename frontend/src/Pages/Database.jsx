@@ -26,7 +26,7 @@ export const Database = () => {
             variant="h4"
             textAlign={"center"}
             textTransform={"uppercase"}
-            p={4}
+            p={2}
             m={1}
             color={"primary"}
           >

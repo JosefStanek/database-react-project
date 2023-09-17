@@ -38,6 +38,16 @@ const router = createBrowserRouter([
             path: ":id",
             element: <EmployeeDetail />,
             loader: EmployeeDetailLoader,
+            action: async ({ request, params }) => {
+              const id = params.id;
+              const res = await axios.delete(
+                "http://localhost:3000/employees/" + id
+              );
+              if (!res.ok) {
+                console.log("error");
+              }
+              return redirect("/employees");
+            },
           },
           {
             path: ":id/edit",

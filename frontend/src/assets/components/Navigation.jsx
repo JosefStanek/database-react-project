@@ -1,11 +1,15 @@
-import { Stack, Toolbar, Typography, Button, AppBar } from "@mui/material";
+import { Stack, Toolbar, Typography, Button, AppBar, Box } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
 export const Navigation = () => {
   return (
-    <AppBar color="inherit" position="fixed" elevation={0}>
+    <AppBar color="inherit" position="fixed" elevation={1}>
       <Toolbar position="fixed">
-        <Typography variant="h6">Logo</Typography>
+        <img
+          src="./public/logo.png"
+          alt=""
+          style={{ width: "30px", height: "30px" }}
+        />
         <Stack
           direction={"row"}
           marginLeft={"auto"}
