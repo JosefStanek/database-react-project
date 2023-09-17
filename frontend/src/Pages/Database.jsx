@@ -1,89 +1,123 @@
-import { Card, Grid, Typography, Stack, Divider, Box } from "@mui/material";
+import {
+  Card,
+  Grid,
+  Typography,
+  Stack,
+  Divider,
+  Box,
+  CardContent,
+  CardHeader,
+  Paper,
+} from "@mui/material";
 import { GraphyEmployee } from "../assets/components/UI/GraphEmployee";
 import { useLoaderData } from "react-router-dom";
-
+import MaleIcon from "@mui/icons-material/Male";
+import FemaleIcon from "@mui/icons-material/Female";
+import { TimeGraph } from "../assets/components/UI/TimeGraph";
 export const Database = () => {
   const data = useLoaderData();
   const employeeLength = data.length;
+  const womenFilter = data.filter((item) => {
+    return item.gender === "women";
+  });
+  const manFilter = data.filter((item) => {
+    return item.gender === "man";
+  });
+
+  const mainBranch = data.filter((item) => {
+    return item.city.toLowerCase() === "praha";
+  });
+
   return (
     <>
-      <Grid container gap={2} justifyContent={"center"}>
-        <Grid item xs={12}>
-          <Typography variant="h4" textAlign={"center"}>
-            Statistika firmy
+      <Grid container gap={2} justifyContent={"center"} mb={4}>
+        <Grid item xs={12} m={2}>
+          <Typography
+            variant="h4"
+            textAlign={"center"}
+            textTransform={"uppercase"}
+          >
+            Dashboard
           </Typography>
         </Grid>
 
-        <Grid item xs={5} md={6}>
-          <Card sx={{ padding: "1rem" }} elevation={5}>
-            <Typography variant="h6" textAlign={"center"}>
-              Počet zaměstnanců
-            </Typography>
-            <Stack
-              direction={"row"}
-              justifyContent={"center"}
-              spacing={2}
-              alignContent={"center"}
-            >
-              <Typography variant="h6">{employeeLength}</Typography>
-            </Stack>
-          </Card>
+        <Grid item xs={12} md={3} alignSelf={"center"}>
+          <Stack spacing={2}>
+            <Card sx={{ padding: "1.7rem" }} elevation={5}>
+              <Typography
+                variant="body2"
+                textAlign={"center"}
+                textTransform={"uppercase"}
+              >
+                počet zaměstnanců
+              </Typography>
+              <Typography
+                variant="h4"
+                textAlign={"center"}
+                p={1}
+                fontWeight={700}
+              >
+                {employeeLength}
+              </Typography>
+              <Divider variant="middle" />
+              <Stack
+                direction={"row"}
+                justifyContent={"center"}
+                spacing={2}
+                alignContent={"center"}
+                alignItems={"center"}
+                p={2}
+              >
+                <MaleIcon color="primary" />
+                <span>{manFilter.length}</span>
+
+                <Divider orientation="vertical" variant="middle" flexItem />
+
+                <FemaleIcon color="error" />
+                <span>{womenFilter.length}</span>
+              </Stack>
+            </Card>
+            <Card sx={{ padding: "1rem" }} elevation={5}>
+              <Typography
+                variant="body2"
+                textAlign={"center"}
+                textTransform={"uppercase"}
+              >
+                počet zaměstnanců
+              </Typography>
+              <Typography
+                variant="body2"
+                textAlign={"center"}
+                textTransform={"uppercase"}
+                mb={2}
+              >
+                centrála praha
+              </Typography>
+              <Divider />
+              <Typography
+                variant="h4"
+                textAlign={"center"}
+                textTransform={"uppercase"}
+                mt={2}
+                color={"primary"}
+                fontWeight={700}
+              >
+                {mainBranch.length}
+              </Typography>
+            </Card>
+          </Stack>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Card sx={{ padding: "1rem" }} elevation={5}>
-            <Typography variant="h6" textAlign={"center"}>
-              Pohlaví
-            </Typography>
-            <Stack
-              direction={"row"}
-              justifyContent={"center"}
-              spacing={2}
-              alignContent={"center"}
-            >
-              <Typography variant="h6">57 mužů</Typography>
-              <Divider orientation="vertical" variant="middle" flexItem />
-              <Typography variant="h6">57 žen</Typography>
-            </Stack>
-          </Card>
-        </Grid>
+
         <Grid item xs={12} md={6}>
           <Card elevation={5}>
             <Stack direction={"column"} justifyContent={"center"}>
-              <GraphyEmployee />
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 1,
-                }}
-              >
-                <Typography variant="body1" color={"#0088FE"}>
-                  IT
-                </Typography>
-                <Typography variant="body1" color={"#00C49F"}>
-                  OFFICE
-                </Typography>
-                <Typography variant="body1" color={"#FFBB28"}>
-                  MANAGEMENT
-                </Typography>
-                <Typography variant="body1" color={"#FF8042"}>
-                  OSTATNÍ
-                </Typography>
-              </Box>
+              <GraphyEmployee data={data} />
             </Stack>
           </Card>
         </Grid>
-
-        <Grid item xs={12} md={8}>
-          <Card>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Exercitationem quod illum at! Quos, non cum error rerum explicabo
-              quasi dolores quam, dolorum unde molestiae at voluptate itaque
-              aliquam facere veritatis omnis illum odit similique nostrum
-              obcaecati nobis! Reprehenderit, magnam perspiciatis?
-            </p>
+        <Grid item xs={12} sm={12} md={9.15}>
+          <Card elevation={5}>
+            <TimeGraph data={data} />
           </Card>
         </Grid>
       </Grid>

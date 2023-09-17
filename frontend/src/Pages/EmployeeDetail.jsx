@@ -97,6 +97,7 @@ export const EmployeeDetail = () => {
             <Button>
               <Link to={`edit`}>upravit</Link>
             </Button>
+            <Button color="error">smazat</Button>
           </Stack>
         </Card>
       </Grid>

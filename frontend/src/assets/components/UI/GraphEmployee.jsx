@@ -1,71 +1,101 @@
 import React, { PureComponent } from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { Typography } from "@mui/material";
 
-const data = [
-  { name: "it", value: 20 },
-  { name: "office", value: 30 },
-  { name: "management", value: 30 },
-  { name: "other", value: 30 },
-];
+export const GraphyEmployee = (props) => {
+  const manInIt = props.data.filter((item) => {
+    return item.gender === "man" && item.category === "it";
+  });
+  const womanInIt = props.data.filter((item) => {
+    return item.gender === "women" && item.category === "it";
+  });
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const manInOffice = props.data.filter((item) => {
+    return item.gender === "man" && item.category === "office";
+  });
+  const womenInOffice = props.data.filter((item) => {
+    return item.gender === "women" && item.category === "office";
+  });
 
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index,
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const manInManagement = props.data.filter((item) => {
+    return item.gender === "man" && item.category === "management";
+  });
+  const womenInManagement = props.data.filter((item) => {
+    return item.gender === "women" && item.category === "management";
+  });
 
+  const manInOther = props.data.filter((item) => {
+    return item.gender === "man" && item.category === "other";
+  });
+
+  const womenInOther = props.data.filter((item) => {
+    return item.gender === "women" && item.category === "other";
+  });
+
+  const data = [
+    {
+      name: "IT",
+      muži: manInIt.length,
+      ženy: womanInIt.length,
+      amt: 100,
+    },
+    {
+      name: "OFFICE",
+      muži: manInOffice.length,
+      ženy: womenInOffice.length,
+      amt: 100,
+    },
+    {
+      name: "MANAGEMENT",
+      muži: manInManagement.length,
+      ženy: womenInManagement.length,
+      amt: 100,
+    },
+    {
+      name: "OSTATNÍ",
+      muži: manInOther.length,
+      ženy: womenInOther.length,
+      amt: 100,
+    },
+  ];
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
-export const GraphyEmployee = () => {
-  return (
-    <div
-      style={{
-        width: "100%",
-        height: 200,
-      }}
-    >
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={200} height={400}>
-          <Pie
+    <>
+      <Typography textAlign={"center"} p={2} textTransform={"uppercase"}>
+        Celkové rozložení - podle oddělení
+      </Typography>
+      <div style={{ width: "100%", height: 300 }}>
+        <ResponsiveContainer>
+          <BarChart
+            width={500}
+            height={300}
             data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
+            margin={{
+              top: 20,
+              right: 20,
+              left: 20,
+              bottom: 20,
+            }}
           >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
-      </ResponsiveContainer>
-    </div>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="ženy" fill="#f73378" />
+            <Bar dataKey="muži" fill="#1976d2" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </>
   );
 };
