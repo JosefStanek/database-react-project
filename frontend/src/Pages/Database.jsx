@@ -1,14 +1,4 @@
-import {
-  Card,
-  Grid,
-  Typography,
-  Stack,
-  Divider,
-  Box,
-  CardContent,
-  CardHeader,
-  Paper,
-} from "@mui/material";
+import { Card, Grid, Typography, Stack, Divider } from "@mui/material";
 import { GraphyEmployee } from "../assets/components/UI/GraphEmployee";
 import { useLoaderData } from "react-router-dom";
 import MaleIcon from "@mui/icons-material/Male";
@@ -31,11 +21,13 @@ export const Database = () => {
   return (
     <>
       <Grid container gap={2} justifyContent={"center"} mb={4}>
-        <Grid item xs={12} m={2}>
+        <Grid item xs={12} md={12}>
           <Typography
             variant="h4"
             textAlign={"center"}
             textTransform={"uppercase"}
+            p={4}
+            m={1}
           >
             Dashboard
           </Typography>

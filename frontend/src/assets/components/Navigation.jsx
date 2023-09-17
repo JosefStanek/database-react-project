@@ -1,8 +1,9 @@
 import { Stack, Toolbar, Typography, Button, AppBar } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import classes from "./Navigation.module.css";
 export const Navigation = () => {
   return (
-    <AppBar color="inherit" position="fixed" elevation={1}>
+    <AppBar color="inherit" position="fixed" elevation={0}>
       <Toolbar position="fixed">
         <Typography variant="h6">Logo</Typography>
         <Stack
@@ -11,10 +12,38 @@ export const Navigation = () => {
           gap={1}
           alignItems={"center"}
         >
-          <Link to={""}>Dashboard</Link>
-          <Link to={"employees"}>Employees</Link>
-          <Link to={"helpdesk"}>Help Desk</Link>
-          <Button variant="contained">Logout</Button>
+          <NavLink
+            to={""}
+            className={({ isActive }) =>
+              isActive
+                ? `${classes.navLink} ${classes.active}`
+                : classes.navLink
+            }
+            end
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            to={"employees"}
+            className={({ isActive }) =>
+              isActive
+                ? `${classes.navLink} ${classes.active}`
+                : classes.navLink
+            }
+          >
+            Zaměstnanci
+          </NavLink>
+          <NavLink
+            to={"helpdesk"}
+            className={({ isActive }) =>
+              isActive
+                ? `${classes.navLink} ${classes.active}`
+                : classes.navLink
+            }
+          >
+            Help Desk
+          </NavLink>
+          <Button>Logout</Button>
         </Stack>
       </Toolbar>
     </AppBar>

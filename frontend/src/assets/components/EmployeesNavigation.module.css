@@ -1,0 +1,12 @@
+.navLink {
+  color: #1976d2;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-right: 1rem;
+  transition: 0.2s all ease-in;
+}
+
+.navLink:hover,
+.navLink.active {
+  border-bottom: 1px solid #1976d2;
+}
