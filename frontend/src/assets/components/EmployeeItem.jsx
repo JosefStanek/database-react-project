@@ -4,9 +4,9 @@ import {
   Card,
   CardActions,
   CardContent,
-  Stack,
   Typography,
 } from "@mui/material";
+import classes from "./EmployeeItem.module.css";
 export const EmployeeItem = (props) => {
   const id = props.id.toString();
   const fullName = `${props.firstName} ${props.lastName}`;
@@ -23,8 +23,8 @@ export const EmployeeItem = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button>
-          <Link to={id}>detail zaměstnance</Link>
+        <Button component={Link} to={id}>
+          detail zaměstnance
         </Button>
       </CardActions>
     </Card>

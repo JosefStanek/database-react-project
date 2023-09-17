@@ -1,7 +1,6 @@
 import { Link, useParams, useLoaderData } from "react-router-dom";
 import {
   Card,
-  Paper,
   Button,
   Typography,
   Stack,
@@ -94,8 +93,8 @@ export const EmployeeDetail = () => {
             </Box>
           </Grid>
           <Stack direction={"row"} justifyContent={"center"} spacing={5} mb={5}>
-            <Button>
-              <Link to={`edit`}>upravit</Link>
+            <Button component={Link} to={`edit`}>
+              upravit
             </Button>
             <Button color="error">smazat</Button>
           </Stack>

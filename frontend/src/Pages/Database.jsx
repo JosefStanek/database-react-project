@@ -28,6 +28,7 @@ export const Database = () => {
             textTransform={"uppercase"}
             p={4}
             m={1}
+            color={"primary"}
           >
             Dashboard
           </Typography>
