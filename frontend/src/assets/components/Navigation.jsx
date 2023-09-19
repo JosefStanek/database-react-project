@@ -1,7 +1,20 @@
-import { Stack, Toolbar, Typography, Button, AppBar, Box } from "@mui/material";
+import {
+  Stack,
+  Toolbar,
+  Button,
+  AppBar,
+  IconButton,
+  Drawer,
+  Box,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
+import MenuIcon from "@mui/icons-material/Menu";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import { useState } from "react";
 export const Navigation = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   return (
     <AppBar color="inherit" position="fixed" elevation={1}>
       <Toolbar position="fixed">
@@ -15,6 +28,7 @@ export const Navigation = () => {
           marginLeft={"auto"}
           gap={1}
           alignItems={"center"}
+          sx={{ display: { xs: "none", sm: "inline" } }}
         >
           <NavLink
             to={""}
@@ -47,9 +61,58 @@ export const Navigation = () => {
           >
             Help Desk
           </NavLink>
-          <Button>Logout</Button>
+          <Button variant="contained">Logout</Button>
         </Stack>
+        <IconButton
+          sx={{
+            display: { xs: "inline", sm: "none" },
+            marginLeft: { xs: "auto", sm: "0rem" },
+          }}
+          onClick={() => setIsDrawerOpen(true)}
+        >
+          <MenuIcon color="primary" />
+        </IconButton>
       </Toolbar>
+
+      <Drawer
+        anchor="left"
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      >
+        <Stack p={2} width={"250px"} gap={1}>
+          <Box textAlign={"center"} color={"#1976d2"}>
+            <DashboardIcon />
+          </Box>
+          <Button
+            component={NavLink}
+            to=""
+            onClick={() => {
+              setIsDrawerOpen(false);
+            }}
+          >
+            Dashboard
+          </Button>
+          <Button
+            component={NavLink}
+            to="employees"
+            onClick={() => {
+              setIsDrawerOpen(false);
+            }}
+          >
+            Zaměstnanci
+          </Button>
+          <Button
+            component={NavLink}
+            to="helpdesk"
+            onClick={() => {
+              setIsDrawerOpen(false);
+            }}
+          >
+            Help Desk
+          </Button>
+          <Button variant="contained">Logout</Button>
+        </Stack>
+      </Drawer>
     </AppBar>
   );
 };

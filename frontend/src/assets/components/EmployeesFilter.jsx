@@ -1,6 +1,15 @@
-import { Stack, Button, Box, TextField } from "@mui/material";
+import { Stack, Button, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 export const EmployeesFilter = (props) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (attr) => {
+    filteredHandler(attr);
+    setAnchorEl(null);
+  };
   const filteredHandler = (type) => {
     props.filteredHandler(type);
   };
@@ -12,8 +21,9 @@ export const EmployeesFilter = (props) => {
         spacing={2}
         textAlign={"center"}
         justifyContent={"center "}
-        mt={4}
+        m={2}
         p={1}
+        sx={{ display: { xs: "none", md: "block" } }}
       >
         <Button
           variant="outlined"
@@ -56,9 +66,48 @@ export const EmployeesFilter = (props) => {
           ostatní
         </Button>
       </Stack>
-      {/* <Box textAlign={"center"} mt={2}>
-        <TextField label={"hledat podle jména"} size="small" />
-      </Box> */}
+
+      <Stack
+        textAlign={"center"}
+        m={2}
+        p={1}
+        sx={{ display: { xs: "block", md: "none" } }}
+      >
+        <Button
+          id="demo-positioned-button"
+          aria-controls={open ? "demo-positioned-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+          size="small"
+          variant="contained"
+        >
+          FILTR
+        </Button>
+        <Menu
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={() => handleClose("all")}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+        >
+          <MenuItem onClick={() => handleClose("all")}>VŠICHNI</MenuItem>
+          <MenuItem onClick={() => handleClose("it")}>IT</MenuItem>
+          <MenuItem onClick={() => handleClose("office")}>OFFICE</MenuItem>
+          <MenuItem onClick={() => handleClose("management")}>
+            MANAGEMENT
+          </MenuItem>
+          <MenuItem onClick={() => handleClose("other")}>OSTATNÍ</MenuItem>
+        </Menu>
+      </Stack>
     </>
   );
 };

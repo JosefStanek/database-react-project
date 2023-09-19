@@ -1,5 +1,5 @@
 import { useRouteLoaderData } from "react-router-dom";
-import { Button, Paper, Stack, Divider, TextField, Box } from "@mui/material";
+import { Paper, Divider, TextField, Stack, Box } from "@mui/material";
 import { EmployeeList } from "../assets/components/EmployeeList";
 import { EmployeesFilter } from "../assets/components/EmployeesFilter";
 import { useState } from "react";
@@ -27,17 +27,25 @@ export const Employees = () => {
   return (
     <>
       <Paper elevation={5} sx={{ paddingTop: "0.5rem", marginTop: "1rem" }}>
-        <EmployeesFilter filteredHandler={filteredHandler} />
-        <Box textAlign={"center"} mt={2}>
+        <Stack
+          textAlign={"center"}
+          sx={{
+            flexDirection: { xs: "row", md: "column" },
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <EmployeesFilter filteredHandler={filteredHandler} />
           <TextField
             label={"hledat podle jména"}
             size="small"
             onChange={filterSearchHandler}
           />
-        </Box>
+        </Stack>
         <Divider sx={{ margin: "1rem" }} />
 
-        <EmployeeList list={filteredData} filter={search} />
+        <EmployeeList list={filteredData} search={search} />
       </Paper>
     </>
   );
