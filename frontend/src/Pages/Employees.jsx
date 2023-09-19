@@ -8,7 +8,7 @@ export const Employees = () => {
   const employeeList = useRouteLoaderData("data");
 
   const [filteredData, setFilteredData] = useState(employeeList);
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
   const filteredHandler = (type) => {
     if (type === "all") {
@@ -21,19 +21,23 @@ export const Employees = () => {
     }
   };
 
-  // const filterSearchHandler = (e) => {
-  //   setSearch(e.target.value);
-  // };
+  const filterSearchHandler = (e) => {
+    setSearch(e.target.value);
+  };
   return (
     <>
       <Paper elevation={5} sx={{ paddingTop: "0.5rem", marginTop: "1rem" }}>
         <EmployeesFilter filteredHandler={filteredHandler} />
         <Box textAlign={"center"} mt={2}>
-          <TextField label={"hledat podle jména"} size="small" />
+          <TextField
+            label={"hledat podle jména"}
+            size="small"
+            onChange={filterSearchHandler}
+          />
         </Box>
         <Divider sx={{ margin: "1rem" }} />
 
-        <EmployeeList list={filteredData} />
+        <EmployeeList list={filteredData} filter={search} />
       </Paper>
     </>
   );
