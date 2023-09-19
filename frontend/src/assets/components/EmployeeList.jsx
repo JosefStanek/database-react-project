@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { EmployeeItem } from "./EmployeeItem";
 export const EmployeeList = (props) => {
   const EmployeeList = props.list
@@ -17,9 +17,21 @@ export const EmployeeList = (props) => {
         />
       </Grid>
     ));
+
   return (
     <Grid container spacing={4} p={2}>
       {EmployeeList}
+      {EmployeeList.length === 0 && (
+        <Grid item xs={12}>
+          <Typography
+            variant="body1"
+            textAlign={"center"}
+            textTransform={"uppercase"}
+          >
+            uživatelské jméno neexistuje
+          </Typography>
+        </Grid>
+      )}
     </Grid>
   );
 };

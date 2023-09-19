@@ -6,7 +6,6 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import classes from "./EmployeeItem.module.css";
 export const EmployeeItem = (props) => {
   const id = props.id.toString();
   const fullName = `${props.firstName} ${props.lastName}`;
