@@ -15,7 +15,10 @@ import { ErrorPage } from "./Pages/ErrorPage";
 import { EditEmployee } from "./Pages/EditEmployee";
 import { loader as EmployeeLoader } from "./Pages/Employees";
 import { loader as EmployeeDetailLoader } from "./Pages/EmployeeDetail";
-// import { action as newEmployeeAction } from "./Pages/NewEmployee";
+import { action as newEmployeeAction } from "./Pages/NewEmployee";
+import { action as DeleteAction } from "./Pages/EmployeeDetail";
+import { loader as EmployeeForEditLoader } from "./Pages/EditEmployee";
+import { action as SendMessageAction } from "./Pages/HelpDesk";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,90 +41,24 @@ const router = createBrowserRouter([
             path: ":id",
             element: <EmployeeDetail />,
             loader: EmployeeDetailLoader,
-            action: async ({ request, params }) => {
-              const id = params.id;
-              const res = await axios.delete(
-                "http://localhost:3000/employees/" + id
-              );
-              if (!res.ok) {
-                console.log("error");
-              }
-              return redirect("/employees");
-            },
+            action: DeleteAction,
           },
           {
             path: ":id/edit",
             element: <EditEmployee />,
-            loader: async ({ params }) => {
-              const id = params.id;
-              const res = await axios.get(
-                "http://localhost:3000/employees/" + id
-              );
-              return res;
-            },
-            action: async ({ request, params }) => {
-              const id = params.id;
-              const data = await request.formData();
-              const newData = {
-                id: new Date().toISOString(),
-                firstName: data.get("firstName"),
-                lastName: data.get("lastName"),
-                photo: data.get("photo"),
-                gender: data.get("gender"),
-                job: data.get("job"),
-                category: data.get("category"),
-                city: data.get("city"),
-                street: data.get("street"),
-                referenceNumber: data.get("referenceNumber"),
-                email: data.get("email"),
-                phone: +data.get("phone"),
-              };
-
-              const res = axios.patch(
-                "http://localhost:3000/employees/" + id,
-                newData
-              );
-              if (!res.ok) {
-                console.log(res.status);
-              }
-              return redirect("/employees");
-            },
+            loader: EmployeeForEditLoader,
           },
           {
             path: "newEmployee",
             element: <NewEmployee />,
-            action: async ({ request }) => {
-              const data = await request.formData();
-              const newData = {
-                id: new Date().toISOString(),
-                firstName: data.get("firstName"),
-                lastName: data.get("lastName"),
-                photo: data.get("photo"),
-                gender: data.get("gender"),
-                job: data.get("job"),
-                category: data.get("category"),
-                city: data.get("city"),
-                street: data.get("street"),
-                referenceNumber: data.get("referenceNumber"),
-                email: data.get("email"),
-                phone: +data.get("phone"),
-              };
-
-              const res = axios.post(
-                "http://localhost:3000/employees",
-                newData
-              );
-              if (!res.ok) {
-                console.log(res.status);
-              }
-              return redirect("/employees");
-            },
+            action: newEmployeeAction,
           },
         ],
       },
       {
         path: "helpdesk",
         element: <HelpDesk />,
+        action: SendMessageAction,
       },
     ],
   },

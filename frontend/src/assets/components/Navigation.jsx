@@ -18,11 +18,7 @@ export const Navigation = () => {
   return (
     <AppBar color="inherit" position="fixed" elevation={1}>
       <Toolbar position="fixed">
-        <img
-          src="./public/logo.png"
-          alt=""
-          style={{ width: "30px", height: "30px" }}
-        />
+        <img src="/logo.png" alt="" style={{ width: "30px", height: "30px" }} />
         <Stack
           direction={"row"}
           marginLeft={"auto"}

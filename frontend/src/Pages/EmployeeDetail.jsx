@@ -1,4 +1,5 @@
-import { Link, useParams, useLoaderData, useSubmit } from "react-router-dom";
+import axios from "axios";
+import { Link, useLoaderData, useSubmit, redirect } from "react-router-dom";
 import {
   Card,
   Button,
@@ -9,19 +10,34 @@ import {
   Grid,
   Icon,
   IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PhoneAndroidSharpIcon from "@mui/icons-material/PhoneAndroidSharp";
 import EmailSharpIcon from "@mui/icons-material/EmailSharp";
 import PlaceSharpIcon from "@mui/icons-material/PlaceSharp";
+import { useState } from "react";
 export const EmployeeDetail = () => {
-  const id = useParams.id;
+  const [open, setOpen] = useState(false);
   const submit = useSubmit();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleCloseDelete = () => {
+    setOpen(false);
+    submit(null, { method: "delete" });
+  };
+
   const data = useLoaderData();
   const fullName = `${data.firstName} ${data.lastName}`;
   const job = data.job;
-  let border;
-  let color;
+  let border = "";
+  let color = "";
   if (data.gender === "women") {
     border = "3px solid #f73378";
     color = "#f73378";
@@ -30,14 +46,33 @@ export const EmployeeDetail = () => {
     color = "#2196f3";
   }
 
-  const deleteHandlerEmployee = () => {
-    const dialog = window.confirm("Jsi si jistý smazat tuto položku?");
-    if (dialog) {
-      submit(null, { method: "delete" });
-    }
-  };
   return (
     <>
+      <div>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Upozornění"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Opravdu chceš smazat tohoto uživatele?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>zpět</Button>
+            <Button
+              onClick={handleCloseDelete}
+              variant="contained"
+              color="error"
+            >
+              smazat
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
       <Grid container justifyContent={"center"}>
         <Grid item xs={12} sm={6}>
           <Card elevation={6}>
@@ -111,7 +146,7 @@ export const EmployeeDetail = () => {
               <Button component={Link} to={`edit`}>
                 upravit
               </Button>
-              <Button color="error" onClick={deleteHandlerEmployee}>
+              <Button color="error" onClick={() => setOpen(true)}>
                 smazat
               </Button>
             </Stack>
@@ -122,8 +157,17 @@ export const EmployeeDetail = () => {
   );
 };
 
-export async function loader({ params }) {
+export const loader = async ({ params }) => {
   const id = params.id;
-  const res = await fetch("http://localhost:3000/employees/" + id);
-  return res;
-}
+  const res = await axios.get("http://localhost:3000/employees/" + id);
+  return res.data;
+};
+
+export const action = async ({ request, params }) => {
+  const id = params.id;
+  const res = await axios.delete("http://localhost:3000/employees/" + id);
+  if (!res.ok) {
+    console.log("error");
+  }
+  return redirect("/employees");
+};

@@ -20,7 +20,7 @@ export const Database = () => {
 
   return (
     <>
-      <Grid container gap={2} justifyContent={"center"} mb={4}>
+      <Grid container gap={2} justifyContent={"center"} mb={2}>
         <Grid item xs={12} md={12}>
           <Typography
             variant="h4"

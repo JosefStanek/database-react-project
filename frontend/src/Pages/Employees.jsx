@@ -26,7 +26,7 @@ export const Employees = () => {
   };
   return (
     <>
-      <Paper elevation={5} sx={{ paddingTop: "0.5rem", marginTop: "1rem" }}>
+      <Paper elevation={5} sx={{ paddingTop: "0.5rem", marginY: "1rem" }}>
         <Stack
           textAlign={"center"}
           sx={{

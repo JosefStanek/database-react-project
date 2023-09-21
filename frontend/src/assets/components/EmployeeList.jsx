@@ -6,7 +6,7 @@ export const EmployeeList = (props) => {
       return item.firstName.toLowerCase().includes(props.search.toLowerCase());
     })
     .map((employee) => (
-      <Grid item xs={12} md={6} lg={4} key={employee.id}>
+      <Grid item xs={12} sm={6} lg={4} key={employee.id}>
         <EmployeeItem
           id={employee.id}
           firstName={employee.firstName}

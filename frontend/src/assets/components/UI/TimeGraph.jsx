@@ -13,7 +13,7 @@ import { Typography } from "@mui/material";
 
 export const TimeGraph = (props) => {
   const timeFilter = props.data.map((item) => {
-    return new Date(item.id).getFullYear();
+    return new Date(item.created).getFullYear();
   });
 
   const count = {};
