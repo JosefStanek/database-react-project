@@ -1,9 +1,9 @@
-import { useRouteLoaderData } from "react-router-dom";
+import { json, useRouteLoaderData } from "react-router-dom";
 import { Paper, Divider, TextField, Stack, Box } from "@mui/material";
 import { EmployeeList } from "../assets/components/EmployeeList";
 import { EmployeesFilter } from "../assets/components/EmployeesFilter";
+import axios from "axios";
 import { useState } from "react";
-
 export const Employees = () => {
   const employeeList = useRouteLoaderData("data");
 
@@ -52,10 +52,15 @@ export const Employees = () => {
 };
 
 export const loader = async () => {
-  const res = await fetch("http://localhost:3000/employees");
-  if (!res.ok) {
-    console.log("Data is not ok");
+  try {
+    const res = await axios.get("http://localhost:3000/employees");
+    return res.data;
+  } catch (error) {
+    throw json(
+      {
+        message: "Data nemohla být načtena, opakujte prosím pokus později.",
+      },
+      { status: 500 }
+    );
   }
-
-  return res;
 };

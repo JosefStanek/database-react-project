@@ -2,6 +2,8 @@ import { Container, Card, Grid, Typography, Box, Button } from "@mui/material";
 import { Navigation } from "../assets/components/Navigation";
 import { Link } from "react-router-dom";
 export const ErrorPage = () => {
+  let title = "Něco se pokazilo. Stránka nebyla nalezena";
+
   return (
     <>
       <Navigation />
@@ -27,7 +29,7 @@ export const ErrorPage = () => {
               p={1}
               color={"primary"}
             >
-              Něco se pokazilo. Stránka nebyla nalezena
+              {title}
             </Typography>
             <Typography variant="body2" textAlign={"center"} p={1}>
               Prosím vrať se prosím na úvodní

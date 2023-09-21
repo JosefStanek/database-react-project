@@ -57,7 +57,6 @@ export const Navigation = () => {
           >
             Help Desk
           </NavLink>
-          <Button variant="contained">Logout</Button>
         </Stack>
         <IconButton
           sx={{
@@ -106,7 +105,6 @@ export const Navigation = () => {
           >
             Help Desk
           </Button>
-          <Button variant="contained">Logout</Button>
         </Stack>
       </Drawer>
     </AppBar>

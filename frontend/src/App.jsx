@@ -19,6 +19,7 @@ import { action as newEmployeeAction } from "./Pages/NewEmployee";
 import { action as DeleteAction } from "./Pages/EmployeeDetail";
 import { loader as EmployeeForEditLoader } from "./Pages/EditEmployee";
 import { action as SendMessageAction } from "./Pages/HelpDesk";
+import { ErrorLoader } from "./Pages/ErrorLoader";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: "employees",
         id: "data",
+        errorElement: <ErrorLoader />,
         loader: EmployeeLoader,
         element: <EmployeesRootLayout />,
         children: [
